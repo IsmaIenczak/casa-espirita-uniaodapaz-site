@@ -1,0 +1,263 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>União da Paz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+
+    <h1 class="logo">União da Paz</h1>
+
+    <button class="menu-btn" id="menu-btn">
+      ☰
+    </button>
+
+    <nav class="nav" id="nav">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#missao">Missão</a>
+      <a href="#contato">Contato</a>
+
+      <button id="dark-mode-btn" class="dark-btn">
+        🌙
+      </button>
+    </nav>
+
+  </header>
+
+
+  <section id="inicio" class="banner">
+
+    <div class="overlay"></div>
+
+    <div class="banner-content">
+
+      <h2>
+        Um espaço de acolhimento, paz e espiritualidade
+      </h2>
+
+      <p>
+        Estudo, fraternidade e desenvolvimento espiritual para todos.
+      </p>
+
+      <a href="#agenda" class="botao">
+        Ver Agenda
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section id="sobre" class="section">
+
+    <div class="container">
+
+      <h2>Quem Somos</h2>
+
+      <p>
+        A União da Paz busca promover o estudo da doutrina espírita,
+        o acolhimento fraterno e o desenvolvimento espiritual através
+        de palestras, estudos e atendimento fraterno.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="coordenacao">
+
+  <div class="container">
+
+    <h2>Coordenação</h2>
+
+    <div class="slider">
+
+      <div class="slide-track">
+
+        <!-- CARD -->
+
+
+
+
+        <div class="membro-card">
+
+
+          <div class="membro-foto">
+
+          <img
+            src="imagens/fabiano.jpg"
+            alt="Fabiano Machado Ienczak"
+          >
+
+          </div>
+
+
+          <h3>Presidente</h3>
+
+          <p>Fabiano Machado Ienczak</p>
+
+        </div>
+
+        <!-- DUPLIQUE OS MEMBROS -->
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+            👤
+          </div>
+
+          <h3>Vice-presidente</h3>
+
+          <p>Nome do Integrante</p>
+
+        </div>
+
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+            👤
+          </div>
+
+          <h3>Secretário</h3>
+
+          <p>Nome do Integrante</p>
+
+        </div>
+
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+            👤
+          </div>
+
+          <h3>Tesoureiro</h3>
+
+          <p>Nome do Integrante</p>
+
+        </div>
+
+
+        <!-- LOOP -->
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+
+            <img
+              src="imagens/fabiano.jpg"
+              alt="Fabiano Machado Ienczak"
+            >
+
+          </div>
+
+          <h3>Presidente</h3>
+
+          <p>Fabiano Machado Ienczak</p>
+
+        </div>
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+            👤
+          </div>
+
+          <h3>Vice-presidente</h3>
+
+          <p>Nome do Integrante</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <section id="missao" class="section destaque">
+
+    <div class="container">
+
+      <h2>Nossa Missão</h2>
+
+      <p>
+        Promover o amor, o conhecimento espiritual e a prática do bem,
+        oferecendo um ambiente de paz, acolhimento e fraternidade.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section id="agenda" class="section">
+
+    <div class="container">
+
+      <h2>Agenda Semanal</h2>
+
+      <div id="lista-agenda" class="cards"></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section mapa">
+
+    <div class="container">
+
+      <h2>Onde Estamos</h2>
+
+      <iframe
+        src="https://www.google.com/maps?q=R.%20Breno%20Guimar%C3%A3es,%20626%20-%20Ermo,%20Gua%C3%ADba%20-%20RS&output=embed"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+  <footer id="contato">
+
+    <h3>União da Paz</h3>
+
+    <p>
+      R. Breno Guimarães, 626 - Ermo, Guaíba - RS
+    </p>
+
+    <p>
+      (51) 99162-3773
+    </p>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
