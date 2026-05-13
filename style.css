@@ -374,6 +374,14 @@ footer p {
   overflow: hidden;
 
   position: relative;
+
+  padding-top: 15px;
+}
+
+
+.slide-track:hover {
+
+  animation-play-state: paused;
 }
 
 .slide-track {
@@ -384,7 +392,7 @@ footer p {
 
   width: max-content;
 
-  animation: scrollSlider 25s linear infinite;
+  animation: scrollSlider 35s linear infinite;
 
   will-change: transform;
 }
