@@ -17,28 +17,46 @@
 
 <body>
 
-  <header class="header">
+<header class="header">
 
-    <h1 class="logo">União da Paz</h1>
+  <h1 class="logo">União da Paz</h1>
 
-    <button class="menu-btn" id="menu-btn">
-      ☰
+  <button class="menu-btn" id="menu-btn">
+    ☰
+  </button>
+
+  <nav class="nav" id="nav">
+
+    <a href="#inicio">Início</a>
+    <a href="#mensagem">Reflexão</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#missao">Missão</a>
+    <a href="#contato">Contato</a>
+
+  </nav>
+
+  <div class="header-actions">
+
+    <button id="dark-mode-btn" class="dark-btn">
+      🌙
     </button>
 
-    <nav class="nav" id="nav">
-      <a href="#inicio">Início</a>
-      <a href="#mensagem">Reflexão</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#agenda">Agenda</a>
-      <a href="#missao">Missão</a>
-      <a href="#contato">Contato</a>
+    <a href="https://www.instagram.com/associacaoespiritauniaodapaz/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-icon">
 
-      <button id="dark-mode-btn" class="dark-btn">
-        🌙
-      </button>
-    </nav>
+      <img
+        src="imagens/instagram-light.svg"
+        alt="Instagram"
+      >
 
-  </header>
+    </a>
+
+  </div>
+
+</header>
 
 
   <section id="inicio" class="banner">
@@ -70,14 +88,14 @@
 
       <div class="mensagem-box">
 
-        <h2>✨ Mensagem do Dia</h2>
+        <h2>Mensagem do Dia</h2>
 
         <div id="mensagem-container">
           <p>Carregando mensagem...</p>
         </div>
 
         <button id="nova-mensagem-btn" class="nova-mensagem-btn">
-          ✨ Nova Reflexão
+          🌿 Nova Reflexão
         </button>
 
 </div>
@@ -107,7 +125,7 @@
 
   </section>
 
-  <section class="coordenacao">
+<section class="coordenacao">
 
   <div class="container">
 
@@ -117,72 +135,7 @@
 
       <div class="slide-track">
 
-        <!-- CARD -->
-
-
-
-
-        <div class="membro-card">
-
-
-          <div class="membro-foto">
-
-          <img
-            src="imagens/fabiano.jpg"
-            alt="Fabiano Machado Ienczak"
-          >
-
-          </div>
-
-
-          <h3>Presidente</h3>
-
-          <p>Fabiano Machado Ienczak</p>
-
-        </div>
-
-        <!-- DUPLIQUE OS MEMBROS -->
-
-        <div class="membro-card">
-
-          <div class="membro-foto">
-            👤
-          </div>
-
-          <h3>Vice-presidente</h3>
-
-          <p>Nome do Integrante</p>
-
-        </div>
-
-
-        <div class="membro-card">
-
-          <div class="membro-foto">
-            👤
-          </div>
-
-          <h3>Secretário</h3>
-
-          <p>Nome do Integrante</p>
-
-        </div>
-
-
-        <div class="membro-card">
-
-          <div class="membro-foto">
-            👤
-          </div>
-
-          <h3>Tesoureiro</h3>
-
-          <p>Nome do Integrante</p>
-
-        </div>
-
-
-        <!-- LOOP -->
+        <!-- PRESIDENTE -->
 
         <div class="membro-card">
 
@@ -197,7 +150,75 @@
 
           <h3>Presidente</h3>
 
-          <p>Fabiano Machado Ienczak</p>
+          <p>Fabiano</p>
+
+        </div>
+
+        <!-- VICE-PRESIDENTE -->
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+            👤
+          </div>
+
+          <h3>Vice-presidente</h3>
+
+          <p>Alessandro</p>
+
+        </div>
+
+        <!-- 1ª SECRETÁRIA -->
+
+    <!-- SECRETÁRIA E TESOUREIRA -->
+
+    <div class="membro-card">
+
+      <div class="membro-foto">
+        👤
+      </div>
+
+      <h3>
+        1ª Secretária e<br>
+        1ª Tesoureira
+      </h3>
+
+      <p>Zilá</p>
+
+    </div>
+
+
+        <!-- 2ª SECRETÁRIA -->
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+            👤
+          </div>
+
+          <h3>2ª Secretária</h3>
+
+          <p>Rosana</p>
+
+        </div>
+
+
+        <!-- LOOP PARA CONTINUIDADE DO SLIDER -->
+
+        <div class="membro-card">
+
+          <div class="membro-foto">
+
+            <img
+              src="imagens/fabiano.jpg"
+              alt="Fabiano Machado Ienczak"
+            >
+
+          </div>
+
+          <h3>Presidente</h3>
+
+          <p>Fabiano</p>
 
         </div>
 
@@ -209,7 +230,7 @@
 
           <h3>Vice-presidente</h3>
 
-          <p>Nome do Integrante</p>
+          <p>Alessandro</p>
 
         </div>
 
@@ -279,9 +300,22 @@
       R. Breno Guimarães, 626 - Ermo, Guaíba - RS
     </p>
 
-    <p>
-      (51) 99162-3773
-    </p>
+    <div class="footer-social">
+
+      <a href="https://www.instagram.com/associacaoespiritauniaodapaz/"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <img
+          src="imagens/instagram-dark.svg"
+          alt="Instagram"
+        >
+
+        @associacaoespiritauniaodapaz
+
+    </a>
+
+    </div>
 
   </footer>
 
