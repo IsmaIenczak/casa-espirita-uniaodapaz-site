@@ -6,14 +6,14 @@ const eventos = [
     icone: "📖",
     dia: "Terça-feira",
     atividade: "Palestras, Passe e Atendimento Fraterno",
-    horario: "19:00"
+    horario: "19:00 - 20:00"
   },
 
   {
     icone: "💻",
-    dia: "Quinta-feira",
-    atividade: "Grupo de Estudos (Online)",
-    horario: "19:00"
+    dia: "Segunda-Feira",
+    atividade: "Grupo de Estudos (Híbrido)",
+    horario: "19:00 - 20:30"
   }
 
 ]
@@ -73,3 +73,64 @@ window.addEventListener("scroll", () => {
     scroll * 0.4 + "px"
 
 })
+
+
+let mensagens = [];
+let indiceAtual = 0;
+
+function renderMensagem(indice) {
+
+  const mensagem = mensagens[indice];
+
+  const container =
+    document.getElementById('mensagem-container');
+
+  container.style.opacity = 0;
+
+  setTimeout(() => {
+
+    container.innerHTML = `
+      <h3>${mensagem.titulo}</h3>
+
+      <p>"${mensagem.trecho}"</p>
+
+      <span>${mensagem.fonte}</span>
+    `;
+
+    container.style.opacity = 1;
+
+  }, 200);
+}
+
+fetch('mensagens.json')
+  .then(response => response.json())
+  .then(data => {
+
+    mensagens = data;
+
+    const hoje = new Date();
+
+    indiceAtual =
+      (hoje.getDate() + hoje.getMonth())
+      % mensagens.length;
+
+    renderMensagem(indiceAtual);
+
+    document
+      .getElementById('nova-mensagem-btn')
+      .addEventListener('click', () => {
+
+        let novoIndice;
+
+        do {
+
+          novoIndice =
+            Math.floor(Math.random() * mensagens.length);
+
+        } while (novoIndice === indiceAtual);
+
+        indiceAtual = novoIndice;
+
+        renderMensagem(indiceAtual);
+      });
+  });

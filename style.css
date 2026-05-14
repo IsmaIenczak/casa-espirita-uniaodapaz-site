@@ -134,7 +134,9 @@ body {
 
   background:
     linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600");
+    url("imagens/paisagem.jpg");
+
+
 
   background-size: cover;
   background-position: center;
@@ -145,6 +147,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: -40px;
 
   text-align: center;
 
@@ -510,5 +513,249 @@ footer p {
 
   to {
     transform: translateX(calc(-310px * 3));
+  }
+}
+
+/* =========================
+   MENSAGEM DO DIA
+========================= */
+
+.mensagem-dia {
+
+  padding: 110px 20px 40px;
+
+  position: relative;
+  z-index: 2;
+
+}
+
+.mensagem-dia .container {
+
+  max-width: 950px;
+}
+
+.mensagem-box {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.95),
+      rgba(255,255,255,0.88)
+    );
+
+  border-radius: 32px;
+
+  padding: 65px 55px;
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 40px rgba(90,140,168,0.10);
+
+  border: 1px solid rgba(90,140,168,0.08);
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: 0.4s ease;
+}
+
+.mensagem-box::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 6px;
+
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    #a8c7d9
+  );
+}
+
+.mensagem-box:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 50px rgba(90,140,168,0.16);
+}
+
+.mensagem-dia h2 {
+
+  font-size: 42px;
+
+  color: var(--primary);
+
+  margin-bottom: 35px;
+
+  font-weight: 700;
+
+  position: relative;
+}
+
+.mensagem-dia h2::after {
+
+  content: "";
+
+  width: 80px;
+  height: 4px;
+
+  background-color: rgba(90,140,168,0.25);
+
+  border-radius: 999px;
+
+  display: block;
+
+  margin: 16px auto 0;
+}
+
+.mensagem-box h3 {
+
+  font-size: 24px;
+
+  color: #4e6f83;
+
+  margin-bottom: 24px;
+
+  font-weight: 600;
+}
+
+.mensagem-box p {
+
+  font-size: 20px;
+
+  line-height: 2;
+
+  color: #4b5563;
+
+  font-style: italic;
+
+  max-width: 760px;
+
+  margin: auto auto 28px;
+}
+
+.mensagem-box span {
+
+  display: inline-block;
+
+  color: var(--primary);
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  background-color: rgba(90,140,168,0.08);
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+}
+
+#mensagem-container {
+
+  transition: opacity 0.2s ease;
+}
+
+.nova-mensagem-btn {
+
+  margin-top: 35px;
+
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    #7db7d5
+  );
+
+  color: white;
+
+  border: none;
+
+  padding: 14px 28px;
+
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    0 8px 20px rgba(90,140,168,0.18);
+}
+
+.nova-mensagem-btn:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 28px rgba(90,140,168,0.28);
+}
+
+.nova-mensagem-btn:active {
+
+  transform: scale(0.98);
+}
+
+/* DARK MODE */
+
+.dark-mode .mensagem-box {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(31,41,55,0.98),
+      rgba(17,24,39,0.98)
+    );
+
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.dark-mode .mensagem-box p {
+
+  color: rgba(255,255,255,0.82);
+}
+
+.dark-mode .mensagem-box h3 {
+
+  color: #c8dceb;
+}
+
+.dark-mode .mensagem-box span {
+
+  background-color: rgba(125,183,213,0.12);
+}
+
+@media (max-width: 768px) {
+
+  .mensagem-box {
+
+    padding: 50px 28px;
+  }
+
+  .mensagem-dia h2 {
+
+    font-size: 34px;
+  }
+
+  .mensagem-box p {
+
+    font-size: 18px;
+
+    line-height: 1.8;
   }
 }
