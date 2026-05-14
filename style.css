@@ -403,38 +403,11 @@ footer p {
   color: var(--primary);
 }
 
-.slider {
 
-  width: 100%;
-  overflow: hidden;
-
-  position: relative;
-
-  padding-top: 15px;
-}
-
-
-.slide-track:hover {
-
-  animation-play-state: paused;
-}
-
-.slide-track {
-
-  display: flex;
-
-  gap: 30px;
-
-  width: max-content;
-
-  animation: scrollSlider 35s linear infinite;
-
-  will-change: transform;
-}
 
 .membro-card {
 
-  min-width: 280px;
+  flex: 0 0 280px;
 
   background-color: var(--card);
 
@@ -537,15 +510,42 @@ footer p {
   font-size: 16px;
 }
 
-@keyframes scrollSlider {
+.slider {
 
-  from {
-    transform: translateX(0);
-  }
+  display: flex;
 
-  to {
-    transform: translateX(calc(-310px * 3));
-  }
+  gap: 30px;
+
+  overflow-x: auto;
+
+  scroll-behavior: smooth;
+
+  padding: 15px 10px 25px;
+
+  cursor: grab;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+
+  display: none;
+}
+
+.slider:active {
+
+  cursor: grabbing;
+}
+
+.slider.dragging {
+  cursor: grabbing;
+}
+
+.slider.dragging * {
+  user-select: none;
+  pointer-events: none;
 }
 
 /* =========================
@@ -883,4 +883,36 @@ footer p {
 
   width: 18px;
   height: 18px;
+}
+
+/* =========================
+   SLIDER DRAG REFINADO
+========================= */
+
+.slider {
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  cursor: grab;
+}
+
+.slider.dragging {
+
+  cursor: grabbing;
+
+  scroll-behavior: auto;
+}
+
+.slider.dragging * {
+
+  pointer-events: none;
+}
+
+.membro-card {
+
+  user-select: none;
+
+  -webkit-user-select: none;
 }
