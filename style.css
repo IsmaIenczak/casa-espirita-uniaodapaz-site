@@ -518,7 +518,7 @@ footer p {
 
   overflow-x: auto;
 
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth removido — conflita com o loop infinito */
 
   padding: 15px 10px 25px;
 

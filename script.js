@@ -171,137 +171,148 @@ fetch("mensagens.json")
 // SLIDER INFINITO
 // =========================
 
-const slider =
-  document.getElementById("slider");
-
-const cards =
-  slider.querySelectorAll(".membro-card");
-
-const quantidadeOriginal =
-  cards.length / 3;
+const slider = document.getElementById("slider");
+const cards  = slider.querySelectorAll(".membro-card");
+const quantidadeOriginal = cards.length / 3;
 
 let larguraLoop = 0;
+let autoScroll  = true;
+let rafId       = null;
 
-// calcula largura da primeira sequência
-for (let i = 0; i < quantidadeOriginal; i++) {
-
-  larguraLoop +=
-    cards[i].offsetWidth + 30;
+// Calcula largura após o layout estar pronto
+function calcLarguraLoop() {
+  larguraLoop = 0;
+  for (let i = 0; i < quantidadeOriginal; i++) {
+    larguraLoop += cards[i].offsetWidth + 30; // 30 = gap
+  }
 }
 
-// começa no meio
-slider.scrollLeft = larguraLoop;
+// Reposicionamento sem scroll-behavior smooth
+function jumpSlider(delta) {
+  slider.style.scrollBehavior = "auto";
+  slider.scrollLeft += delta;
+  // Restaura depois de um frame para não afetar
+  // outros scrolls intencionais
+  requestAnimationFrame(() => {
+    slider.style.scrollBehavior = "";
+  });
+}
 
+function checkLoop() {
+  if (!larguraLoop) return;
+  const min = larguraLoop * 0.5;       // guarda de segurança: 50% do bloco
+  const max = larguraLoop * 2 - min;
 
-// =========================
-// AUTO SCROLL
-// =========================
-
-let autoScroll = true;
-
-setInterval(() => {
-
-  if (!autoScroll) return;
-
-  slider.scrollLeft += 0.7;
-
-  // reset invisível
-  if (slider.scrollLeft >= larguraLoop * 2) {
-
-    slider.scrollLeft = larguraLoop;
+  if (slider.scrollLeft <= min) {
+    jumpSlider(larguraLoop);
+  } else if (slider.scrollLeft >= max) {
+    jumpSlider(-larguraLoop);
   }
+}
 
-}, 16);
+// =========================
+// AUTO SCROLL (rAF)
+// =========================
 
+function tickAutoScroll() {
+  if (autoScroll) {
+    slider.scrollLeft += 0.7;
+    checkLoop();
+  }
+  rafId = requestAnimationFrame(tickAutoScroll);
+}
 
 // =========================
 // DRAG DESKTOP
 // =========================
 
 let isDown = false;
+let ultimoX = 0;
+let autoScrollTimer = null;
 
-let startX;
-
-let scrollInicial;
+function pauseAutoScroll() {
+  autoScroll = false;
+  clearTimeout(autoScrollTimer);
+  autoScrollTimer = setTimeout(() => { autoScroll = true; }, 1200);
+}
 
 slider.addEventListener("mousedown", (e) => {
-
-  isDown = true;
-
-  autoScroll = false;
-
-  slider.classList.add("dragging");
-
-  startX = e.pageX;
+  isDown  = true;
   ultimoX = e.pageX;
-  scrollInicial = slider.scrollLeft;
+  slider.classList.add("dragging");
+  pauseAutoScroll();
 });
 
 window.addEventListener("mouseup", () => {
-
+  if (!isDown) return;
   isDown = false;
-
   slider.classList.remove("dragging");
-
-  setTimeout(() => {
-
-    autoScroll = true;
-
-  }, 1000);
 });
-
-let ultimoX = 0;
 
 slider.addEventListener("mousemove", (e) => {
-
   if (!isDown) return;
-
   e.preventDefault();
 
-  const delta =
-    e.pageX - ultimoX;
-
+  const delta = e.pageX - ultimoX;
   slider.scrollLeft -= delta;
-
   ultimoX = e.pageX;
 
-  // LOOP INFINITO
-
-  const limiteMin = 50;
-
-const limiteMax =
-  larguraLoop * 2 - 50;
-
-// LOOP SUAVE ESQUERDA
-
-  if (slider.scrollLeft <= limiteMin) {
-
-    slider.scrollLeft += larguraLoop;
-  }
-
-  // LOOP SUAVE DIREITA
-
-  if (slider.scrollLeft >= limiteMax) {
-
-    slider.scrollLeft -= larguraLoop;
-  }
+  checkLoop();
 });
-
 
 // =========================
 // TOUCH MOBILE
 // =========================
 
-slider.addEventListener("touchstart", () => {
+let touchUltimoX  = 0;
+let touchUltimoY  = 0;
+let touchTracking = false;
 
-  autoScroll = false;
-});
+slider.addEventListener("touchstart", (e) => {
+  touchUltimoX  = e.touches[0].clientX;
+  touchUltimoY  = e.touches[0].clientY;
+  touchTracking = true;
+  pauseAutoScroll();
+}, { passive: true });
+
+slider.addEventListener("touchmove", (e) => {
+  if (!touchTracking) return;
+
+  const dx = e.touches[0].clientX - touchUltimoX;
+  const dy = e.touches[0].clientY - touchUltimoY;
+
+  // Só trata o toque como horizontal (evita conflito com scroll da página)
+  if (Math.abs(dx) > Math.abs(dy)) {
+    e.preventDefault();
+    slider.scrollLeft -= dx;
+    checkLoop();
+  }
+
+  touchUltimoX = e.touches[0].clientX;
+  touchUltimoY = e.touches[0].clientY;
+}, { passive: false });
 
 slider.addEventListener("touchend", () => {
+  touchTracking = false;
+  checkLoop(); // verifica uma última vez após a inércia nativa
+});
 
-  setTimeout(() => {
+// =========================
+// INIT
+// =========================
 
-    autoScroll = true;
+// Aguarda fontes + imagens carregarem para medir corretamente
+window.addEventListener("load", () => {
+  calcLarguraLoop();
+  // Começa no bloco do meio (posição neutra do loop)
+  slider.style.scrollBehavior = "auto";
+  slider.scrollLeft = larguraLoop;
+  slider.style.scrollBehavior = "";
 
-  }, 1000);
+  // Recalcula se a janela for redimensionada
+  window.addEventListener("resize", () => {
+    calcLarguraLoop();
+  });
+
+  tickAutoScroll();
 });
