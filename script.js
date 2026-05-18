@@ -76,18 +76,22 @@ menuBtn.addEventListener("click", () => {
 // PARALLAX BANNER
 // =========================
 
-window.addEventListener("scroll", () => {
+const bannerEl = document.querySelector(".banner");
 
-  const banner =
-    document.querySelector(".banner");
+// A mensagem usa background-attachment: fixed — parallax nativo, sem JS necessário.
+// iOS não suporta fixed; o fallback é tratado via classe .ios no CSS.
 
-  const scroll =
-    window.pageYOffset;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+if (isIOS) document.documentElement.classList.add("ios");
 
-  banner.style.backgroundPositionY =
-    scroll * 0.4 + "px";
+function onScroll() {
+  const scrollY = window.pageYOffset;
+  if (bannerEl) {
+    bannerEl.style.backgroundPositionY = (scrollY * 0.35) + "px";
+  }
+}
 
-});
+window.addEventListener("scroll", onScroll, { passive: true });
 
 
 // =========================
