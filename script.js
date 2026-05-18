@@ -73,22 +73,25 @@ menuBtn.addEventListener("click", () => {
 
 
 // =========================
-// PARALLAX BANNER
+// PARALLAX — BANNER + MENSAGEM
 // =========================
 
-const bannerEl = document.querySelector(".banner");
+// Função de parallax universal — mesma lógica para as duas imagens
+function calcParallax(el, bgEl, factor) {
+  if (!el || !bgEl) return;
+  const rect = el.getBoundingClientRect();
+  const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+  if (!inView) return;
+  const progress = window.innerHeight - rect.top;
+  bgEl.style.transform = `translateY(${-progress * factor}px)`;
+}
 
-// A mensagem usa background-attachment: fixed — parallax nativo, sem JS necessário.
-// iOS não suporta fixed; o fallback é tratado via classe .ios no CSS.
-
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-if (isIOS) document.documentElement.classList.add("ios");
+// Variáveis declaradas aqui, preenchidas no load
+let bannerEl, bannerBg, mensagemBoxEl, mensagemBoxBg;
 
 function onScroll() {
-  const scrollY = window.pageYOffset;
-  if (bannerEl) {
-    bannerEl.style.backgroundPositionY = (scrollY * 0.35) + "px";
-  }
+  calcParallax(bannerEl,      bannerBg,      0.07);
+  calcParallax(mensagemBoxEl, mensagemBoxBg, 0.07);
 }
 
 window.addEventListener("scroll", onScroll, { passive: true });
@@ -307,13 +310,27 @@ slider.addEventListener("touchend", () => {
 
 // Aguarda fontes + imagens carregarem para medir corretamente
 window.addEventListener("load", () => {
+
+  // Cria divs de parallax após DOM + imagens prontos
+  bannerEl = document.querySelector(".banner");
+  bannerBg = document.createElement("div");
+  bannerBg.className = "banner-bg";
+  if (bannerEl) bannerEl.prepend(bannerBg);
+
+  mensagemBoxEl = document.querySelector(".mensagem-box");
+  mensagemBoxBg = document.createElement("div");
+  mensagemBoxBg.className = "mensagem-box-bg";
+  if (mensagemBoxEl) mensagemBoxEl.prepend(mensagemBoxBg);
+
+  // Posiciona corretamente já no carregamento
+  onScroll();
+
+  // Slider
   calcLarguraLoop();
-  // Começa no bloco do meio (posição neutra do loop)
   slider.style.scrollBehavior = "auto";
   slider.scrollLeft = larguraLoop;
   slider.style.scrollBehavior = "";
 
-  // Recalcula se a janela for redimensionada
   window.addEventListener("resize", () => {
     calcLarguraLoop();
   });
